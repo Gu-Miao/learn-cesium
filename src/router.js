@@ -92,8 +92,26 @@ const routers = [
   },
   {
     path: '/czml',
-    component: 'czml',
-    exact: true
+    routers: [
+      {
+        path: '/',
+        component: 'czml',
+        exact: true,
+        title: 'CZML'
+      },
+      {
+        path: '/path',
+        component: 'czml/path',
+        exact: true,
+        title: 'Path'
+      }
+    ]
+  },
+  {
+    path: '/positions',
+    component: 'positions',
+    exact: true,
+    title: 'Positions'
   },
   {
     component: 'error'
