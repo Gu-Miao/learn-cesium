@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import Cesium from '@utils/cesium'
+import { Button } from 'antd'
 import dayjs from 'dayjs'
 
 const startPosition = [-85.0, 36.0]
@@ -8,8 +9,8 @@ const endPosition = [-84.9, 36.1]
 const start = Cesium.Cartesian3.fromDegrees(...startPosition)
 const end = Cesium.Cartesian3.fromDegrees(...endPosition)
 
-const duration = 30
-const count = 100
+const duration = 20
+const count = 80
 let positions = []
 
 function createCZML(positions) {
@@ -54,7 +55,10 @@ function createCZML(positions) {
         resolution: 5
       },
       point: {
-        pixelSize: 0.0
+        pixelSize: 0.0,
+        color: {
+          rgba: [0, 0, 0, 255]
+        }
       },
       position: {
         epoch: startISO,
@@ -73,7 +77,7 @@ function getCartographicDegrees(positions) {
     (i * duration) / count,
     Cesium.Math.toDegrees(position.longitude),
     Cesium.Math.toDegrees(position.latitude),
-    position.height + 200.0
+    position.height + 30.0
   ])
 }
 
@@ -118,29 +122,37 @@ class Path extends Component {
       )
     }
     try {
-      const res = await Cesium.sampleTerrain(this.terrainProvider, 15, p)
+      const res = await Cesium.sampleTerrain(this.terrainProvider, 12, p)
       positions = [...res]
-      console.log('positions ready\n', positions)
+      this.setState({ viewDisabled: false })
       return positions
     } catch (e) {
       console.error(e)
       return []
     }
   }
-  loadCZML = toEnd => {
-    const e = this.viewer.entities.getById('path')
-    console.log(e)
-    const p = toEnd ? positions : [...positions].reverse()
+  clearPrevDataSource = () => {
     if (this.ds) {
       this.viewer.dataSources.remove(this.ds, true)
+      this.viewer.trackedEntity = undefined
     }
-    this.viewer.dataSources.add(Cesium.CzmlDataSource.load(createCZML(p))).then(ds => {
-      this.ds = ds
-      this.viewer.trackedEntity = ds.entities.getById('path')
-    })
+  }
+  setCameraPosition = () => {}
+  loadCZML = async toEnd => {
+    this.clearPrevDataSource()
+    const p = toEnd ? positions : [...positions].reverse()
+    try {
+      this.ds = await this.viewer.dataSources.add(Cesium.CzmlDataSource.load(createCZML(p)))
+      const entity = this.ds.entities.getById('path')
+      this.viewer.zoomTo(entity)
+      this.viewer.trackedEntity = entity
+    } catch (e) {
+      console.error(e)
+      this.flyTo(toEnd)
+    }
   }
   flyTo = (toEnd = false) => {
-    this.viewer.trackedEntity = undefined
+    this.clearPrevDataSource()
     this.camera.flyTo({
       destination: new Cesium.Cartesian3.fromDegrees(
         ...(toEnd ? endPosition : startPosition),
@@ -157,28 +169,31 @@ class Path extends Component {
     const { viewDisabled } = this.state
     return (
       <>
-        <button
-          disabled={viewDisabled}
-          className="tool-btn"
-          style={{ top: 60 }}
-          onClick={() => this.loadCZML()}
-        >
-          view to start
-        </button>
-        <button
-          disabled={viewDisabled}
-          className="tool-btn"
-          style={{ top: 105 }}
-          onClick={() => this.loadCZML(true)}
-        >
-          view to end
-        </button>
-        <button className="tool-btn" style={{ top: 150 }} onClick={() => this.flyTo()}>
-          Fly to Start
-        </button>
-        <button className="tool-btn" style={{ top: 195 }} onClick={() => this.flyTo(true)}>
-          Fly to end
-        </button>
+        <div className="toolbar">
+          <Button
+            className="vtb"
+            disabled={viewDisabled}
+            type="primary"
+            onClick={() => this.loadCZML()}
+          >
+            view to start
+          </Button>
+          <Button
+            className="vtb"
+            disabled={viewDisabled}
+            type="primary"
+            onClick={() => this.loadCZML(true)}
+          >
+            view to end
+          </Button>
+          <Button className="vtb" type="primary" onClick={() => this.flyTo()}>
+            Fly to Start
+          </Button>
+          <Button className="vtb" type="primary" onClick={() => this.flyTo(true)}>
+            Fly to end
+          </Button>
+        </div>
+
         <div id="stage"></div>
       </>
     )
