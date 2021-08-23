@@ -203,7 +203,6 @@ class Path extends Component {
       this.viewer.trackedEntity = undefined
     }
   }
-  setCameraPosition = () => {}
   loadCZML = async toEnd => {
     this.clearPrevDataSource()
     const p = toEnd ? positions : [...positions].reverse()
