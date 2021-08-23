@@ -119,8 +119,17 @@ export class Path extends Component {
               geometryInstances: new Cesium.GeometryInstance({
                 geometry: new Cesium.GroundPolylineGeometry({
                   positions: [positions[i], positions[i + 1]],
-                  width: 6.0
-                })
+                  width: 6.0,
+                  vertexFormat: Cesium.PolylineColorAppearance.VERTEX_FORMAT
+                }),
+                attributes: {
+                  color: Cesium.ColorGeometryInstanceAttribute.fromColor(
+                    new Cesium.Color(0.0, 0.0, 1.0, 1.0)
+                  )
+                }
+              }),
+              appearance: new Cesium.PolylineColorAppearance({
+                translucent: false
               })
             })
           )
