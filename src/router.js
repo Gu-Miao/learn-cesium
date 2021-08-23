@@ -126,9 +126,26 @@ const routers = [
   },
   {
     path: '/positions',
-    component: 'positions',
-    exact: true,
-    title: 'Positions'
+    routers: [
+      {
+        path: '/',
+        component: 'positions',
+        exact: true,
+        title: 'Positions'
+      },
+      {
+        path: '/headingPitch',
+        component: 'positions/headingPitch',
+        exact: true,
+        title: 'Heading & Pitch'
+      },
+      {
+        path: '/widerView',
+        component: 'positions/widerView',
+        exact: true,
+        title: 'Wider View'
+      }
+    ]
   },
   {
     component: 'error'
