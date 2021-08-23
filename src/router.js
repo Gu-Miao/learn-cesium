@@ -77,8 +77,25 @@ const routers = [
   },
   {
     path: '/groundPolyline',
-    component: 'groundPolyline',
-    exact: true
+    routers: [
+      {
+        path: '/',
+        component: 'groundPolyline',
+        exact: true
+      },
+      {
+        path: '/basic',
+        component: 'groundPolyline/basic',
+        exact: true,
+        title: 'basic'
+      },
+      {
+        path: '/path',
+        component: 'groundPolyline/path',
+        exact: true,
+        title: 'path'
+      }
+    ]
   },
   {
     path: '/rotateFly',
