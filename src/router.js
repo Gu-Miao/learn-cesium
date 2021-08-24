@@ -148,6 +148,23 @@ const routers = [
     ]
   },
   {
+    path: '/geojson',
+    routers: [
+      {
+        path: '/',
+        component: 'geojson',
+        exact: true,
+        title: 'Geo json'
+      },
+      {
+        path: '/china',
+        component: 'geojson/china',
+        exact: true,
+        title: 'China'
+      }
+    ]
+  },
+  {
     component: 'error'
   }
 ]
