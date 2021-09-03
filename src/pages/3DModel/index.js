@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import Cesium from '@/utils/cesium'
-import { MODELS_URL } from '@utils/path'
+import plane from '@assets/plane.glb'
 
 /** @type import('cesium').Model **/
 let model
@@ -74,7 +74,7 @@ const Model = () => {
     const heading = 0.0
     const pitch = Cesium.Math.toRadians(10.0)
     const roll = Cesium.Math.toRadians(-20.0)
-    createModel(`${MODELS_URL}/Cesium_Air.glb`, height, heading, pitch, roll)
+    createModel(plane, height, heading, pitch, roll)
   }, [])
 
   return <div id="stage"></div>
