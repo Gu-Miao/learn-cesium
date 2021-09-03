@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import Cesium from '@/utils/cesium'
+import plane from '@assets/plane.glb'
 
 import './style.less'
 
@@ -30,8 +31,6 @@ const localFrames = [
     comments: 'Down East South\nlocal Frame'
   }
 ]
-
-const url = '/models/Cesium_Air.glb'
 
 class LocalToFixedFrame extends Component {
   state = {
@@ -65,7 +64,7 @@ class LocalToFixedFrame extends Component {
       // Create plane model primitive.
       const planePrimitive = scene.primitives.add(
         Cesium.Model.fromGltf({
-          url,
+          url: plane,
           modelMatrix: Cesium.Transforms.headingPitchRollToFixedFrame(
             position,
             hpRoll,
