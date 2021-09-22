@@ -1,6 +1,5 @@
 import { Component } from 'react'
 import Cesium from '@utils/cesium'
-import { PUBLIC_URL } from '@utils/path'
 
 class AjustHeight extends Component {
   state = {
@@ -31,7 +30,10 @@ class AjustHeight extends Component {
     viewer.scene.globe.depthTestAgainstTerrain = true
 
     this.tileset = new Cesium.Cesium3DTileset({
-      url: `${PUBLIC_URL}/tileset/tileset.json`
+      url: new Cesium.Resource({
+        url: 'https://www.gutianhuang.red/public/tilesets/buildings/tileset.json'
+        // proxy: new Cesium.DefaultProxy('')
+      })
     })
 
     this.tileset.readyPromise
