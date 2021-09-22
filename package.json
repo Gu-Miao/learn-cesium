@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "antd": "^4.16.8",
-    "cesium": "^1.84.0",
+    "cesium": "^1.85.0",
     "cesium-navigation-es6": "^1.1.7",
     "copy-webpack-plugin": "5.x",
     "dayjs": "^1.10.6",
@@ -25,6 +25,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.14.5",
     "@craco/craco": "^6.2.0",
+    "@open-wc/webpack-import-meta-loader": "^0.4.7",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
