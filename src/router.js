@@ -161,6 +161,12 @@ const routers = [
         component: 'geojson/china',
         exact: true,
         title: 'China'
+      },
+      {
+        path: '/chinaPrimitive',
+        component: 'geojson/chinaPrimitive',
+        exact: true,
+        title: 'China as Primitive'
       }
     ]
   },
