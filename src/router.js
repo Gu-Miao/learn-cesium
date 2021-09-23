@@ -57,6 +57,11 @@ const routers = [
         path: '/HeatMapBuildings',
         component: '3DTiles/HeatMapBuildings',
         exact: true
+      },
+      {
+        path: '/Crystalline',
+        component: '3DTiles/Crystalline',
+        exact: true
       }
     ]
   },
