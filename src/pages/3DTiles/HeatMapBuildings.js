@@ -18,8 +18,6 @@ class HeatMapBuildings extends Component {
 
     viewer.scene.primitives.add(tileset)
 
-    console.log('tileset: ', tileset)
-
     viewer.screenSpaceEventHandler.setInputAction(e => {
       const c3 = viewer.scene.pickPosition(e.position)
       if (c3) {
@@ -28,8 +26,6 @@ class HeatMapBuildings extends Component {
         console.log(Cesium.Math.toDegrees(c.latitude))
       }
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK)
-
-    window.v = viewer
 
     // Set camera view.
     let radius = tileset.boundingSphere.radius
@@ -52,15 +48,7 @@ class HeatMapBuildings extends Component {
     }
 
     // init heatmap
-    let heatMap = Heatmap.create(
-      viewer, // your cesium viewer
-      bounds, // bounds for heatmap layer
-      {
-        // heatmap.js options go here
-        // maxOpacity: 0.3
-        radius: 40
-      }
-    )
+    let heatMap = Heatmap.create(viewer, bounds, { radius: 40 })
 
     // random example data
     let data = [{ x: 121.49532705453251, y: 31.240605851735456, value: 99 }]
