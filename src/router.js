@@ -52,6 +52,11 @@ const routers = [
         path: '/AjustHeight',
         component: '3DTiles/AjustHeight',
         exact: true
+      },
+      {
+        path: '/HeatMapBuildings',
+        component: '3DTiles/HeatMapBuildings',
+        exact: true
       }
     ]
   },
