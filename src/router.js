@@ -52,21 +52,6 @@ const routers = [
         path: '/AjustHeight',
         component: '3DTiles/AjustHeight',
         exact: true
-      },
-      {
-        path: '/BatchTableHierarchy',
-        component: '3DTiles/BatchTableHierarchy',
-        exact: true
-      },
-      {
-        path: '/BIM',
-        component: '3DTiles/BIM',
-        exact: true
-      },
-      {
-        path: '/FromIonResource',
-        component: '3DTiles/FromIonResource',
-        exact: true
       }
     ]
   },
