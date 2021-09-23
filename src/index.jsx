@@ -4,11 +4,11 @@ import './index.less'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 
-import { CESIUM_SOURCE_URL } from '@utils/path'
+import { PUBLIC_URL } from '@utils/path'
 import Cesium from '@utils/cesium'
 import 'cesium/Build/Cesium/Widgets/widgets.css'
 
-window.CESIUM_BASE_URL = CESIUM_SOURCE_URL
+window.CESIUM_BASE_URL = PUBLIC_URL
 
 Cesium.Ion.defaultAccessToken =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwZTdlMjM1NS1iY2M4LTQ3MDAtYWU0Zi04MTEzZDczN2FmY2EiLCJpZCI6NjM0NjIsImlhdCI6MTYyOTE2NjY1NX0.bQtn7jvNqRYh2h6vcHRHkm49sNjeBNflIViYXJll2sU'

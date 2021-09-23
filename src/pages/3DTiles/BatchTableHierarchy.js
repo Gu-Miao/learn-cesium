@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import Cesium from '@utils/cesium'
-import { TILES_URL } from '@utils/path'
 
 /* eslint-disable no-template-curly-in-string */
 const styles = [
@@ -81,7 +80,7 @@ class BatchTableHierarchy extends Component {
     viewer.clock.currentTime = new Cesium.JulianDate(2457522.154792)
 
     this.tileset = new Cesium.Cesium3DTileset({
-      url: `${TILES_URL}/BatchTableHierarchy/tileset.json`
+      url: `/BatchTableHierarchy/tileset.json`
     })
 
     viewer.scene.primitives.add(this.tileset)

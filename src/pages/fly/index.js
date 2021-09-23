@@ -1,6 +1,5 @@
 import { Component } from 'react'
 import Cesium from '@utils/cesium'
-// import { MODELS_URL } from '@utils/path'
 
 class Fly extends Component {
   componentDidMount() {
