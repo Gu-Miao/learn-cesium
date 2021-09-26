@@ -1,5 +1,6 @@
 const fs = `
 precision highp float;
+uniform vec4 u_baseColorFactor;
 uniform float u_metallicFactor;
 uniform float u_roughnessFactor;
 uniform vec3 u_emissiveFactor;
@@ -50,27 +51,25 @@ vec3 LINEARtoSRGB(vec3 linearIn) {
 #endif 
 }
 
-vec4 base_color = vec4(.1, .2, .7, 1.);
-
 #ifdef USE_IBL_LIGHTING 
 uniform vec2 gltf_iblFactor; 
 #endif 
 #ifdef USE_CUSTOM_LIGHT_COLOR 
 #endif 
 void main(void) {
-
+  vec4 _baseColor = vec4(u_baseColorFactor.rgb, 1.);
   vec3 ng = normalize(v_normal);
   vec3 positionWC = vec3(czm_inverseView * vec4(v_positionEC, 1.0));
   vec3 n = ng;
   if(czm_backFacing()) {
       n = -n;
   }
-  vec4 baseColorWithAlpha = base_color;
+  vec4 baseColorWithAlpha = _baseColor;
   vec3 baseColor = baseColorWithAlpha.rgb;
   float metalness = clamp(u_metallicFactor, 0.0, 1.0);
   float roughness = clamp(u_roughnessFactor, 0.04, 1.0);
   vec3 v = -normalize(v_positionEC);
-  vec3 lightColorHdr = base_color.rgb;
+  vec3 lightColorHdr = _baseColor.rgb;
   vec3 l = normalize(czm_lightDirectionEC);
   vec3 h = normalize(v + l);
   float NdotL = clamp(dot(n, l), 0.001, 1.0);
@@ -174,17 +173,14 @@ void main(void) {
 
   // Set color deep by height.
   float deep = clamp((position.z - 50.) / 200. + .5, 0., 3.5);
-  vec4 post_color = base_color * vec4(vec3(deep) * 1.2, 1.0);
+  vec4 post_color = _baseColor * vec4(vec3(deep) * 1.2, 1.0);
 
   // Set scanning lines.
   float time = fract(czm_frameNumber / (60. * 5.));
   float scan = step(0.0015, abs(clamp(position.z / 650., 0., 1.) - time));
 
-  // Set top highlight.
-
-  gl_FragColor = vec4(color + post_color.rgb + ((scan == 0. ? 5. : 1.) * post_color.rgb), 1.0);
+  gl_FragColor = vec4(color * .1 + post_color.rgb * .7 + ((scan == 0. ? 5. : 1.) * post_color.rgb), 1.0);
 }
-
 `
 
 export default fs
