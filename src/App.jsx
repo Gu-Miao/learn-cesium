@@ -1,14 +1,17 @@
+import { lazy, Suspense } from 'react'
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import CacheRoute, { CacheSwitch } from 'react-router-cache-route'
-import AsyncComponent from '@components/AsyncComponent'
+import { LoadingOutlined } from '@ant-design/icons'
 
 import routers from '@/router'
 
 const App = () => {
   return (
-    <Router basename={process.env.PUBLIC_URL}>
-      <CacheSwitch>{renderRouters(routers)}</CacheSwitch>
-    </Router>
+    <Suspense fallback={<LoadingOutlined spin style={{ color: '#32abf1' }} />}>
+      <Router basename={process.env.PUBLIC_URL}>
+        <CacheSwitch>{renderRouters(routers)}</CacheSwitch>
+      </Router>
+    </Suspense>
   )
 }
 
@@ -16,7 +19,7 @@ function render(props, component, routers, rootPath = '') {
   const childenRouters = renderRouters(routers, { location: props.location }, rootPath)
 
   if (component) {
-    const Component = AsyncComponent(component)
+    const Component = lazy(() => import(`@pages/${component}`))
     return <Component {...props}>{childenRouters}</Component>
   } else {
     return childenRouters
