@@ -4,7 +4,7 @@ import './index.less'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 
-import { PUBLIC_URL } from '@utils/path'
+import { PUBLIC_URL } from '@utils/paths'
 import Cesium from '@utils/cesium'
 import 'cesium/Build/Cesium/Widgets/widgets.css'
 
