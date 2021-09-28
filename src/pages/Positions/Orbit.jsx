@@ -5,7 +5,7 @@ const startPosition = [-85.0, 36.0, 1000.0]
 
 const start = Cesium.Cartesian3.fromDegrees(...startPosition)
 
-class RotateFly extends Component {
+class Orbit extends Component {
   fly = () => {
     // 相机看点的角度，如果大于0那么则是从地底往上看，所以要为负值，这里取-30度
     const pitch = Cesium.Math.toRadians(-30)
@@ -76,4 +76,4 @@ class RotateFly extends Component {
   }
 }
 
-export default RotateFly
+export default Orbit

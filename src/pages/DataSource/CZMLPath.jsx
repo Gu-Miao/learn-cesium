@@ -84,7 +84,7 @@ function getCartographicDegrees(positions) {
   ])
 }
 
-class Path extends Component {
+class CZMLPath extends Component {
   state = {
     viewDisabled: true
   }
@@ -270,4 +270,4 @@ class Path extends Component {
   }
 }
 
-export default Path
+export default CZMLPath

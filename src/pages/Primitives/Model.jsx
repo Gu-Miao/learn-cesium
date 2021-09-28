@@ -2,6 +2,8 @@ import { useEffect } from 'react'
 import Cesium from '@/utils/cesium'
 import plane from '@assets/plane.glb'
 
+console.log(plane)
+
 /** @type import('cesium').Model **/
 let model
 

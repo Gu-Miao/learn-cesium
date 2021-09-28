@@ -1,172 +1,164 @@
-/** @type import('react-router-cache-route').CacheRouteProps[] */
 const routers = [
   {
+    key: 'Home',
+    title: 'Learn Cesium',
     path: '/',
-    component: 'home',
+    component: 'Home/index',
     exact: true
   },
   {
-    path: '/widget',
-    component: 'widget',
-    exact: true
-  },
-  {
-    path: '/3DModel',
-    component: '3DModel',
-    exact: true
-  },
-  {
-    path: '/billboards',
-    component: 'billboards',
-    exact: true
-  },
-  {
-    path: '/localToFixedFrame',
-    component: 'localToFixedFrame',
-    exact: true
-  },
-  {
-    path: '/polyline',
-    component: 'polyline',
-    exact: true
-  },
-  {
-    path: '/terrain',
-    component: 'terrain',
-    exact: true
-  },
-  {
-    path: '/premitives',
-    component: 'premitives',
-    exact: true
-  },
-  {
-    path: '/3DTiles',
+    key: 'Cesium3DTiles',
+    title: 'Cesium 3D Tiles',
+    path: '/cesium-3d-tiles',
     routers: [
       {
+        key: 'Cesium3DTiles',
         path: '/',
-        component: '3DTiles',
+        component: 'Cesium3DTiles/index',
         exact: true
       },
       {
-        path: '/AjustHeight',
-        component: '3DTiles/AjustHeight',
+        key: 'AjustHeight',
+        title: 'Ajust Height',
+        path: '/ajust-height',
+        component: 'Cesium3DTiles/AjustHeight',
         exact: true
       },
       {
-        path: '/HeatMapBuildings',
-        component: '3DTiles/HeatMapBuildings',
-        exact: true
-      },
-      {
-        path: '/Crystalline',
-        component: '3DTiles/Crystalline',
+        key: 'CrystalHeatZone',
+        title: 'Crystal Heat Zone',
+        path: '/crystal-heat-zone',
+        component: 'Cesium3DTiles/CrystalHeatZone',
         exact: true
       }
     ]
   },
   {
-    path: '/labels',
-    component: 'labels',
-    exact: true
-  },
-  {
-    path: '/groundPolyline',
+    key: 'DataSource',
+    title: 'DataSource',
+    path: '/dataSource',
     routers: [
       {
+        key: 'DataSource',
         path: '/',
-        component: 'groundPolyline',
+        component: 'DataSource/index',
         exact: true
       },
       {
-        path: '/basic',
-        component: 'groundPolyline/basic',
-        exact: true,
-        title: 'basic'
+        key: 'China',
+        title: 'China',
+        path: '/china',
+        component: 'DataSource/China',
+        exact: true
       },
       {
-        path: '/path',
-        component: 'groundPolyline/path',
-        exact: true,
-        title: 'path'
+        key: 'CZMLPath',
+        title: 'CZML Path',
+        path: '/czml-path',
+        component: 'DataSource/CZMLPath',
+        exact: true
       }
     ]
   },
   {
-    path: '/rotateFly',
-    component: 'rotateFly',
-    exact: true
-  },
-  {
-    path: '/fly',
-    component: 'fly',
-    exact: true
-  },
-  {
-    path: '/czml',
+    key: 'Entities',
+    title: 'Entities',
+    path: '/entities',
     routers: [
       {
+        key: 'Entities',
         path: '/',
-        component: 'czml',
-        exact: true,
-        title: 'CZML'
-      },
-      {
-        path: '/path',
-        component: 'czml/path',
-        exact: true,
-        title: 'Path'
+        component: 'Entities/index',
+        exact: true
       }
     ]
   },
   {
+    key: 'Positions',
+    title: 'Positions',
     path: '/positions',
     routers: [
       {
+        key: 'Positions',
         path: '/',
-        component: 'positions',
-        exact: true,
-        title: 'Positions'
+        component: 'Positions/index',
+        exact: true
       },
       {
-        path: '/headingPitch',
-        component: 'positions/headingPitch',
-        exact: true,
-        title: 'Heading & Pitch'
+        key: 'LocalToFixedFrame',
+        title: 'Local To Fixed Frame',
+        path: '/local-to-fixed-frame',
+        component: 'Positions/LocalToFixedFrame/index',
+        exact: true
       },
       {
-        path: '/widerView',
-        component: 'positions/widerView',
-        exact: true,
-        title: 'Wider View'
+        key: 'HeadingPitch',
+        title: 'Heading & Pitch',
+        path: '/heading-pitch',
+        component: 'Positions/HeadingPitch',
+        exact: true
+      },
+      {
+        key: 'Orbit',
+        title: 'Orbit',
+        path: '/orbit',
+        component: 'Positions/Orbit',
+        exact: true
+      },
+      {
+        key: 'WiderView',
+        title: 'Wider View',
+        path: '/wider-view',
+        component: 'Positions/WiderView',
+        exact: true
       }
     ]
   },
   {
-    path: '/geojson',
+    key: 'Primitives',
+    title: 'Primitives',
+    path: '/primitives',
     routers: [
       {
+        key: 'Primitives',
         path: '/',
-        component: 'geojson',
-        exact: true,
-        title: 'Geo json'
+        component: 'Primitives/index',
+        exact: true
       },
       {
-        path: '/china',
-        component: 'geojson/china',
-        exact: true,
-        title: 'China'
+        key: 'Billboards',
+        title: 'Billboards',
+        path: '/billboards',
+        component: 'Primitives/Billboards',
+        exact: true
       },
       {
-        path: '/chinaPrimitive',
-        component: 'geojson/chinaPrimitive',
-        exact: true,
-        title: 'China as Primitive'
+        key: 'GroundPolyline',
+        title: 'Ground Polyline',
+        path: '/ground-polyline',
+        component: 'Primitives/GroundPolyline',
+        exact: true
+      },
+      {
+        key: 'Model',
+        title: 'Model',
+        path: '/model',
+        component: 'Primitives/Model',
+        exact: true
+      },
+      {
+        key: 'Polylines',
+        title: 'Polylines',
+        path: '/polylines',
+        component: 'Primitives/Polylines',
+        exact: true
       }
     ]
   },
   {
-    component: 'error'
+    key: 'Error',
+    title: 'Something Went Wrong',
+    component: 'Error/index'
   }
 ]
 

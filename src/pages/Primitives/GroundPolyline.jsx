@@ -10,7 +10,7 @@ const end = Cesium.Cartesian3.fromDegrees(...endPosition)
 const count = 30
 const positions = []
 
-class Basic extends Component {
+class GroundPolyline extends Component {
   async componentDidMount() {
     const terrainProvider = Cesium.createWorldTerrain()
 
@@ -71,4 +71,4 @@ class Basic extends Component {
   }
 }
 
-export default Basic
+export default GroundPolyline

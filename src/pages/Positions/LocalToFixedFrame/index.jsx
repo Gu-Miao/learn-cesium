@@ -2,7 +2,7 @@ import { Component } from 'react'
 import Cesium from '@/utils/cesium'
 import plane from '@assets/plane.glb'
 
-import './style.less'
+import './index.less'
 
 const localFrames = [
   {

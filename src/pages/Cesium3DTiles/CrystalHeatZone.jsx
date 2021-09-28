@@ -1,7 +1,7 @@
 /* eslint-disable no-template-curly-in-string */
 import React, { Component } from 'react'
 import Cesium from '@utils/cesium'
-import fs from './crystallineFS'
+import fs from './crystalFS'
 
 function colorByDistanceToCoordinate(lon = -122.33317436409693, lat = 47.608251670406524) {
   return new Cesium.Cesium3DTileStyle({

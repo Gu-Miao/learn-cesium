@@ -2,8 +2,6 @@ import { useEffect } from 'react'
 import Cesium from '@/utils/cesium'
 import logo from '@assets/logo.svg'
 
-console.log('logo', logo)
-
 const Billboard = () => {
   useEffect(() => {
     const viewer = new Cesium.Viewer('stage')
@@ -13,7 +11,6 @@ const Billboard = () => {
         image: logo,
         show: true,
         color: Cesium.Color.LIME,
-        // sizeInMeters: true,
         scaleByDistance: new Cesium.NearFarScalar(100, 1.5, 1.5e5, 0.2)
       }
     })
