@@ -28,7 +28,8 @@ module.exports = {
           patterns: [
             { from: cesiumSourcePath + 'Assets', to: 'Assets' },
             { from: cesiumSourcePath + 'Widgets', to: 'Widgets' },
-            { from: cesiumBuildPath + 'Workers', to: 'Workers' }
+            { from: cesiumBuildPath + 'Workers', to: 'Workers' },
+            { from: cesiumBuildPath + 'ThirdParty', to: 'ThirdParty' }
           ]
         })
       ]

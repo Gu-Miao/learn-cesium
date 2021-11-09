@@ -30,6 +30,13 @@ const routers = [
         path: '/crystal-heat-zone',
         component: 'Cesium3DTiles/CrystalHeatZone',
         exact: true
+      },
+      {
+        key: 'ClampTo3DTiles',
+        title: 'Clamp To 3DTiles',
+        path: '/clamp-to-3d-tiles',
+        component: 'Cesium3DTiles/ClampTo3DTiles',
+        exact: true
       }
     ]
   },
