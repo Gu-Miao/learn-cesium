@@ -2,8 +2,8 @@ const path = require('path')
 const CracoLessPlugin = require('craco-less')
 const CopywebpackPlugin = require('copy-webpack-plugin')
 
-const cesiumSource = path.join(__dirname, 'node_modules/cesium/Source')
-const cesiumWorkers = path.join(cesiumSource, '../Build/Cesium/Workers')
+const cesiumSourcePath = 'node_modules/cesium/Source/'
+const cesiumBuildPath = 'node_modules/cesium/Build/Cesium/'
 
 const resloveSrc = (...paths) => path.join(__dirname, 'src', ...paths)
 
@@ -24,9 +24,13 @@ module.exports = {
     },
     plugins: {
       add: [
-        new CopywebpackPlugin([{ from: cesiumWorkers, to: 'Workers' }]),
-        new CopywebpackPlugin([{ from: path.join(cesiumSource, 'Assets'), to: 'Assets' }]),
-        new CopywebpackPlugin([{ from: path.join(cesiumSource, 'Widgets'), to: 'Widgets' }])
+        new CopywebpackPlugin({
+          patterns: [
+            { from: cesiumSourcePath + 'Assets', to: 'Assets' },
+            { from: cesiumSourcePath + 'Widgets', to: 'Widgets' },
+            { from: cesiumBuildPath + 'Workers', to: 'Workers' }
+          ]
+        })
       ]
     },
     configure(config) {
