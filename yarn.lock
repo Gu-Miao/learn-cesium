@@ -3347,10 +3347,15 @@ cesium-navigation-es6@^1.1.7:
     markdown-it "^8.4.2"
     markdown-it-sanitizer "^0.4.3"
 
-cesium@^1.72.0, cesium@^1.85.0:
+cesium@^1.72.0:
   version "1.85.0"
   resolved "https://r.cnpmjs.org/cesium/download/cesium-1.85.0.tgz#00d983648710f13a925c20504548879eac38e902"
   integrity sha1-ANmDZIcQ8TqSXCBQRUiHnqw46QI=
+
+cesium@^1.87.0:
+  version "1.87.0"
+  resolved "https://registry.npmmirror.com/cesium/download/cesium-1.87.0.tgz#1180d8425605e37d9482141ee7bcdc9804f24d5b"
+  integrity sha1-EYDYQlYF432UghQe57zcmATyTVs=
 
 chalk@2.4.2, chalk@^2.0.0, chalk@^2.4.1, chalk@^2.4.2:
   version "2.4.2"
