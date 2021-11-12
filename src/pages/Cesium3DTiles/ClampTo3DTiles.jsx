@@ -1,9 +1,9 @@
 import { Component } from 'react'
 import Cesium, { CesiumNavigation } from '@utils/cesium'
 import { Button } from 'antd'
-import czml from './ClampToGroundCZML'
+import czml, { positions } from './ClampToGroundCZML'
 
-class AjustHeight extends Component {
+class ClampTo3DTiles extends Component {
   state = {
     disabled: true
   }
@@ -36,16 +36,29 @@ class AjustHeight extends Component {
       endTransform: Cesium.Matrix4.IDENTITY
     })
 
+    this.viewer.entities.add({
+      polyline: {
+        positions: positions.map(p => Cesium.Cartesian3.fromDegrees(...p)),
+        classificationType: Cesium.ClassificationType.BOTH,
+        width: 10,
+        material: Cesium.Color.RED,
+        clampToGround: true
+      }
+    })
+
     if (scene.clampToHeightSupported) {
-      tileset.initialTilesLoaded.addEventListener(() => this.setState({ disabled: false }))
+      tileset.initialTilesLoaded.addEventListener(() => {
+        this.setState({ disabled: false })
+      })
     } else {
       window.alert('This browser does not support clampToHeight.')
     }
 
     screenSpaceEventHandler.setInputAction(movement => {
       const pick = scene.pickPosition(movement.position)
-      const c = Cesium.Cartographic.fromCartesian(pick)
+      if (!pick) return
 
+      const c = Cesium.Cartographic.fromCartesian(pick)
       console.log(Cesium.Math.toDegrees(c.longitude))
       console.log(Cesium.Math.toDegrees(c.latitude))
     }, Cesium.ScreenSpaceEventType.LEFT_CLICK)
@@ -84,4 +97,4 @@ class AjustHeight extends Component {
   }
 }
 
-export default AjustHeight
+export default ClampTo3DTiles

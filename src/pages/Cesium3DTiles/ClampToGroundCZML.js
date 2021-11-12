@@ -2,16 +2,22 @@ import gltf from '@assets/CesiumMilkTruck.glb'
 import Cesium from '@utils/cesium'
 import dayjs from 'dayjs'
 
-const positions = [
-  [-75.59682640355302, 40.0377282591004, 30],
-  [-75.59721134830173, 40.037671211919225, 30],
-  [-75.59747878476885, 40.037898069427314, 30],
-  [-75.59700518759936, 40.03799476320532, 30]
+export const positions = [
+  [-75.59685701983534, 40.03777212564437, 0],
+  [-75.59751284840819, 40.037625784396035, 0],
+  [-75.59752436893649, 40.03762521293061, 0],
+  [-75.59753556564439, 40.0376272278541, 0],
+  [-75.59755235855748, 40.03763093311733, 0],
+  [-75.59756354026823, 40.03763717624739, 0],
+  [-75.59757299408281, 40.03764388127161, 0],
+  [-75.59758417874735, 40.037654826771465, 0],
+  [-75.59759281350301, 40.03766684520388, 0],
+  [-75.59767412977382, 40.03784933701905, 0]
 ]
 
-const duration = 1 * 60
+const duration = 0.5 * 60
 const modelDefaultHeading = -90
-const turnDuration = 2
+const turnDuration = 0.5
 let totalDistance = 0
 let time = 0
 const distances = []
@@ -47,13 +53,16 @@ for (let i = 0; i < positions.length; i++) {
     unitQuaternion.push(0, x, y, z, w)
     continue
   }
-  time = time + (distances[i - 1] / totalDistance) * duration
+  const timeDiff = (distances[i - 1] / totalDistance) * duration
+  time = time + timeDiff
   cartographicDegrees.push(time, ...positions[i])
-  if (i === positions.length - 1) break
   const { x: _x, y: _y, z: _z, w: _w } = orientations[i - 1]
-
-  unitQuaternion.push(time - turnDuration, _x, _y, _z, _w)
-  unitQuaternion.push(time, x, y, z, w)
+  unitQuaternion.push(timeDiff >= turnDuration ? time - turnDuration : time, _x, _y, _z, _w)
+  if (i === positions.length - 1) {
+    unitQuaternion.push(time, _x, _y, _z, _w)
+  } else {
+    unitQuaternion.push(time, x, y, z, w)
+  }
 }
 
 const startTime = dayjs()
@@ -68,7 +77,7 @@ const czml = [
     clock: {
       interval: `${startTimeISO}/${endTimeISO}`,
       currentTime: startTimeISO,
-      multiplier: 3,
+      multiplier: 1,
       range: 'UNBOUNDED'
     }
   },
@@ -90,8 +99,10 @@ const czml = [
 ]
 
 /**
+ * Get local positions.
  * @param {Cesium.Cartesian3} prev Prev Cartesian3 position.
  * @param {Cesium.Cartesian3} next Bext Cartesian3 position.
+ * @returns {{prev: Cesium.Cartesian3, next: Cesium.Cartesian3}} Local positions
  */
 function getLocalPositions(prev, next) {
   const localToWorldMatrix = Cesium.Transforms.eastNorthUpToFixedFrame(prev)
@@ -114,6 +125,12 @@ function getLocalPositions(prev, next) {
   }
 }
 
+/**
+ * Get heading degree
+ * @param {Cesium.Cartesian3} prev Prev Cartesian3 position.
+ * @param {Cesium.Cartesian3} next Bext Cartesian3 position.
+ * @returns {number} Heading degree
+ */
 function getHeadingDegree(prev, next) {
   const { x: x1, y: y1 } = prev
   const { x: x2, y: y2 } = next
@@ -145,5 +162,7 @@ function getHeadingDegree(prev, next) {
     return realα
   }
 }
+
+console.log(czml)
 
 export default czml
