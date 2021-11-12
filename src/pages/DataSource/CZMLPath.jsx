@@ -1,7 +1,6 @@
 import { Component } from 'react'
 import Cesium, { CesiumNavigation } from '@utils/cesium'
 import { Button } from 'antd'
-import dayjs from 'dayjs'
 
 const startPosition = [-85.0, 36.0]
 const endPosition = [-84.9, 36.1]
@@ -14,11 +13,11 @@ const count = 80
 let positions = []
 
 function createCZML(positions, viewFrom) {
-  const start = dayjs()
-  const end = start.clone().add(duration, 's')
+  const start = Cesium.JulianDate.now()
+  const end = Cesium.JulianDate.addSeconds(start, duration, new Cesium.JulianDate())
 
-  const startISO = start.toISOString()
-  const endISO = end.toISOString()
+  const startISO = Cesium.JulianDate.toIso8601(start)
+  const endISO = Cesium.JulianDate.toIso8601(end)
 
   return [
     {

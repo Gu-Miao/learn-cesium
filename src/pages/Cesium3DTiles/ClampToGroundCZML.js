@@ -1,6 +1,5 @@
 import gltf from '@assets/CesiumMilkTruck.glb'
 import Cesium from '@utils/cesium'
-import dayjs from 'dayjs'
 
 export const positions = [
   [-75.59685701983534, 40.03777212564437, 0],
@@ -65,10 +64,10 @@ for (let i = 0; i < positions.length; i++) {
   }
 }
 
-const startTime = dayjs()
-const endTime = startTime.add(duration, 's')
-const startTimeISO = startTime.toISOString()
-const endTimeISO = endTime.toISOString()
+const startTime = Cesium.JulianDate.now()
+const endTime = Cesium.JulianDate.addSeconds(startTime, duration, new Cesium.JulianDate())
+const startTimeISO = Cesium.JulianDate.toIso8601(startTime)
+const endTimeISO = Cesium.JulianDate.toIso8601(endTime)
 
 const czml = [
   {

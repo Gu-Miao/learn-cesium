@@ -14,7 +14,6 @@
     "antd": "^4.16.8",
     "cesium": "^1.87.0",
     "cesium-navigation-es6": "^1.1.7",
-    "dayjs": "^1.10.6",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-cache-route": "^1.11.1",

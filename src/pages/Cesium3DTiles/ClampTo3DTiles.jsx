@@ -72,6 +72,9 @@ class ClampTo3DTiles extends Component {
     const truck = this.ds.entities.getById('CesiumMilkTruck')
     const positionProperty = truck.position
 
+    this.viewer.trackedEntity = truck
+    this.viewer.camera.moveBackward(3000)
+
     const objectsToExclude = [truck]
     const postRender = () => {
       const position = positionProperty.getValue(clock.currentTime)
