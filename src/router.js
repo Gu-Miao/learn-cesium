@@ -77,6 +77,13 @@ const routers = [
         path: '/',
         component: 'Entities/index',
         exact: true
+      },
+      {
+        key: 'RegularPolygonWall',
+        title: 'Regular Polygon Wall',
+        path: '/regular-polygon-wall',
+        component: 'Entities/RegularPolygonWall',
+        exact: true
       }
     ]
   },
