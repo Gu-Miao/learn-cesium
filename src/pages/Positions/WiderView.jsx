@@ -159,9 +159,9 @@ function getWiderView(prev, next, pitch = -45, backward = 1000) {
   const xDiff = p2.x - p1.x
   const yDiff = p2.y - p1.y
 
-  const x = backward * Math.abs(Math.sin((heading / 180) * Math.PI)) * (xDiff > 0 ? -1 : 1)
-  const y = backward * Math.abs(Math.cos((heading / 180) * Math.PI)) * (yDiff > 0 ? -1 : 1)
-  const z = backward / Math.abs(Math.tan((pitch / 180) * Math.PI))
+  const x = backward * Math.abs(Math.sin(Cesium.Math.toRadians(heading))) * (xDiff > 0 ? -1 : 1)
+  const y = backward * Math.abs(Math.cos(Cesium.Math.toRadians(heading))) * (yDiff > 0 ? -1 : 1)
+  const z = backward / Math.abs(Math.tan(Cesium.Math.toRadians(pitch)))
 
   p1.x += x
   p1.y += y
