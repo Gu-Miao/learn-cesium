@@ -14,7 +14,7 @@ export const positions = [
   [-75.59767412977382, 40.03784933701905, 0]
 ]
 
-const duration = 0.5 * 60
+const duration = 10
 const modelDefaultHeading = -90
 const turnDuration = 0.5
 let totalDistance = 0
@@ -82,7 +82,6 @@ const czml = [
   },
   {
     id: 'CesiumMilkTruck',
-    availability: `${startTimeISO}/${endTimeISO}`,
     model: {
       gltf
     },
@@ -163,5 +162,9 @@ function getHeadingDegree(prev, next) {
 }
 
 console.log(czml)
+
+export const lastPosition = positions[positions.length - 1]
+
+export const lastOrientation = orientations[orientations.length - 1]
 
 export default czml

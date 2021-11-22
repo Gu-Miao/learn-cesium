@@ -1,7 +1,7 @@
 import { Component } from 'react'
 import Cesium, { CesiumNavigation } from '@utils/cesium'
 import { Button } from 'antd'
-import czml, { positions } from './ClampToGroundCZML'
+import czml, { positions, lastPosition, lastOrientation } from './ClampToGroundCZML'
 
 class ClampTo3DTiles extends Component {
   state = {
@@ -80,6 +80,11 @@ class ClampTo3DTiles extends Component {
       const position = positionProperty.getValue(clock.currentTime)
       if (!position) {
         scene.postRender.removeEventListener(postRender)
+        truck.orientation = lastOrientation
+        truck.position = scene.clampToHeight(
+          Cesium.Cartesian3.fromDegrees(...lastPosition),
+          objectsToExclude
+        )
         return
       }
       truck.position = scene.clampToHeight(position, objectsToExclude)
