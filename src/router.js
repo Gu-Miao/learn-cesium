@@ -99,6 +99,13 @@ const routers = [
         exact: true
       },
       {
+        key: 'CameraOn3DTiles',
+        title: 'Camera On 3DTiles',
+        path: '/camera-on-3d-tiles',
+        component: 'Positions/CameraOn3DTiles',
+        exact: true
+      },
+      {
         key: 'LocalToFixedFrame',
         title: 'Local To Fixed Frame',
         path: '/local-to-fixed-frame',
