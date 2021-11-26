@@ -147,5 +147,67 @@ function getWiderView(postion1, postion2, pitch = -45, backward = 600) {
   }
 }
 
-export { CesiumNavigation, addHeight, setHeight, getHeadingDegree, getLocalPositions, getWiderView }
+/**
+ * 追踪位置不断变化的实体
+ * @param options 配置选项
+ * @returns 停止追踪的函数
+ */
+
+/**
+ * Track animate entity
+ *
+ * @param {{
+ *  viewer: Cesium.Viewer,
+ *  entity: Cesium.Entity,
+ *  pitch: number,
+ *  range: number,
+ *  endTime:Cesium.JulianDate
+ * }} options Options
+ * @returns {()=>void} Animation canceler
+ */
+function trackAnimateEntity(options) {
+  const { viewer, entity, pitch, range, endTime } = options
+
+  function track(clock) {
+    if (Cesium.JulianDate.greaterThan(clock.currentTime, endTime)) {
+      canceler()
+      return
+    }
+
+    const position = entity.position.getValue(clock.currentTime)
+    if (!position) return
+    const nextSecond = Cesium.JulianDate.addSeconds(clock.currentTime, 0.2, new Cesium.JulianDate())
+    const nextPosition = entity.position.getValue(nextSecond)
+    if (!nextPosition) return
+    const heading = getHeadingDegree(position, nextPosition)
+
+    viewer.camera.lookAt(
+      position,
+      new Cesium.HeadingPitchRange(
+        Cesium.Math.toRadians(heading),
+        Cesium.Math.toRadians(pitch),
+        range
+      )
+    )
+  }
+
+  viewer.clock.onTick.addEventListener(track)
+
+  function canceler() {
+    viewer.clock.onTick.removeEventListener(track)
+    viewer.trackedEntity = undefined
+  }
+
+  return canceler
+}
+
+export {
+  CesiumNavigation,
+  addHeight,
+  setHeight,
+  getHeadingDegree,
+  getLocalPositions,
+  getWiderView,
+  trackAnimateEntity
+}
 export default Cesium

@@ -106,6 +106,13 @@ const routers = [
         exact: true
       },
       {
+        key: 'CustomTracking',
+        title: 'Custom Tracking',
+        path: '/custom-tracking',
+        component: 'Positions/CustomTracking',
+        exact: true
+      },
+      {
         key: 'LocalToFixedFrame',
         title: 'Local To Fixed Frame',
         path: '/local-to-fixed-frame',
