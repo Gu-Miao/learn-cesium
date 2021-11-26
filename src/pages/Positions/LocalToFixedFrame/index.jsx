@@ -2,8 +2,6 @@ import { Component } from 'react'
 import Cesium from '@/utils/cesium'
 import plane from '@assets/plane.glb'
 
-import './index.less'
-
 const localFrames = [
   {
     position: Cesium.Cartesian3.fromDegrees(-123.075, 44.045, 5000.0),
