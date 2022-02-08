@@ -1,32 +1,28 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
-    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import 'rsuite/styles/index.less';
+@import 'cesium/Build/Cesium/Widgets/widgets.css';
+
+:root {
+  --rs-btn-default-hover-text: var(--rs-btn-default-text);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+@scrollbarWidth: 8px;
+::-webkit-scrollbar {
+  width: @scrollbarWidth;
+}
+::-webkit-scrollbar-track {
+  border-radius: @scrollbarWidth;
+  background: #eee;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: @scrollbarWidth;
+  background: #ccc;
 }
 
-#stage {
-  height: 100vh;
+#navigationDiv .compass {
+  top: 115px;
 }
 
-.toolbar {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  z-index: 999;
-  padding: 20px;
-  border-radius: 5px;
-  background-color: rgba(0, 0, 0, 0.3);
-  color: #fff;
-
-  .vtb {
-    display: block;
-    margin-bottom: 10px;
-    width: 100%;
-  }
+ul {
+  list-style: none;
+  padding-inline-start: 0;
 }

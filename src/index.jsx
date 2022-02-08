@@ -1,24 +1,20 @@
-import React from 'react'
-import ReactDOM from 'react-dom'
-import './index.less'
+import { StrictMode } from 'react'
+import { render } from 'react-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
+
 import App from './App'
 import reportWebVitals from './reportWebVitals'
 
-import { PUBLIC_URL } from '@utils/paths'
-import Cesium from '@utils/cesium'
-import 'cesium/Build/Cesium/Widgets/widgets.css'
+import './index.less'
 
-window.CESIUM_BASE_URL = PUBLIC_URL
+window.CESIUM_BASE_URL = process.env.PUBLIC_URL
 
-// Cesium.Ion.defaultAccessToken =
-//   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIwZTdlMjM1NS1iY2M4LTQ3MDAtYWU0Zi04MTEzZDczN2FmY2EiLCJpZCI6NjM0NjIsImlhdCI6MTYyOTE2NjY1NX0.bQtn7jvNqRYh2h6vcHRHkm49sNjeBNflIViYXJll2sU'
-Cesium.Ion.defaultAccessToken =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJkNmY0NTdiNi0yMWU0LTQ4ODYtOTI4ZC01YTNkMjBmOGJiNWIiLCJpZCI6MjU5LCJpYXQiOjE2MzU3ODA2MDR9.y50NF0p5ljbH7Tau2KiGsZdCNx0Icx905QiljL43nYM'
-
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+render(
+  <StrictMode>
+    <Router basename={process.env.PUBLIC_URL}>
+      <App />
+    </Router>
+  </StrictMode>,
   document.getElementById('root')
 )
 

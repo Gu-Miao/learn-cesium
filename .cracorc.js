@@ -8,19 +8,9 @@ const cesiumBuildPath = 'node_modules/cesium/Build/Cesium/'
 const resloveSrc = (...paths) => path.join(__dirname, 'src', ...paths)
 
 module.exports = {
-  babel: {
-    plugins: [
-      ['import', { libraryName: 'antd', style: 'css' }],
-      ['@babel/plugin-proposal-decorators', { legacy: true }]
-    ]
-  },
   webpack: {
     alias: {
-      '@': resloveSrc(),
-      '@assets': resloveSrc('assets'),
-      '@components': resloveSrc('components'),
-      '@pages': resloveSrc('pages'),
-      '@utils': resloveSrc('utils')
+      '@': resloveSrc()
     },
     plugins: {
       add: [
@@ -40,6 +30,11 @@ module.exports = {
       config.module.rules.push({
         test: /\.js$/,
         use: { loader: require.resolve('@open-wc/webpack-import-meta-loader') }
+      })
+      const oneOfRules = config.module.rules.find(rule => rule.oneOf)
+      oneOfRules.oneOf.unshift({
+        test: /\.glsl$/,
+        use: [{ loader: require.resolve('raw-loader'), options: { esModule: false } }]
       })
       return config
     }

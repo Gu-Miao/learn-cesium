@@ -11,29 +11,26 @@
     "lint": "eslint --ext js,jsx src --max-warnings 0"
   },
   "dependencies": {
-    "antd": "^4.16.8",
-    "cesium": "^1.87.0",
+    "cesium": "^1.89.0",
     "cesium-navigation-es6": "^1.1.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-router-cache-route": "^1.11.1",
-    "react-router-dom": "^5.2.0",
+    "react-router-dom": "^6.2.1",
+    "rsuite": "^5.5.1",
     "web-vitals": "^1.0.1"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-decorators": "^7.14.5",
-    "@craco/craco": "^6.2.0",
+    "@craco/craco": "^6.4.3",
     "@open-wc/webpack-import-meta-loader": "^0.4.7",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
-    "babel-plugin-import": "^1.13.3",
     "copy-webpack-plugin": "^6.4.1",
-    "craco-less": "^1.18.0",
+    "craco-less": "^2.0.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
-    "http-proxy-middleware": "^2.0.1",
     "prettier": "^2.3.2",
+    "raw-loader": "^4.0.2",
     "react-scripts": "4.0.3"
   }
 }

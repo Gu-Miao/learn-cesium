@@ -1,59 +1,50 @@
 import { lazy, Suspense } from 'react'
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
-import CacheRoute, { CacheSwitch } from 'react-router-cache-route'
-import { LoadingOutlined } from '@ant-design/icons'
+import { Routes, Route, useNavigate } from 'react-router-dom'
+import { Container, Header, Navbar, Content, Loader, Footer } from 'rsuite'
+import { allCases } from './cases/cases'
 
-import routers from '@/router'
+import './App.less'
 
-const App = () => {
+const HomePage = lazy(() => import('@/pages/Home/Home'))
+const ErrorPage = lazy(() => import('@/pages/Error/Error'))
+
+function Loading() {
   return (
-    <Suspense fallback={<LoadingOutlined spin style={{ color: '#32abf1' }} />}>
-      <Router basename={process.env.PUBLIC_URL}>
-        <CacheSwitch>{renderRouters(routers)}</CacheSwitch>
-      </Router>
-    </Suspense>
+    <div className="loading">
+      <Loader size="lg" />
+    </div>
   )
 }
 
-function render(props, component, routers, rootPath = '') {
-  const childenRouters = renderRouters(routers, { location: props.location }, rootPath)
-
-  if (component) {
-    const Component = lazy(() => import(`@pages/${component}`))
-    return <Component {...props}>{childenRouters}</Component>
-  } else {
-    return childenRouters
-  }
-}
-
-function getElement(router, index, rootPath = '') {
-  const { routers, component, ...routeProps } = router
-  routeProps.key = routeProps.key || index
-  if (routeProps.path) routeProps.path = rootPath + routeProps.path
-  if (routeProps.redirect) {
-    return <Redirect {...routeProps} from={routeProps.path} to={routeProps.redirect} />
-  } else {
-    const Cmp = routeProps.when ? CacheRoute : Route
-    return (
-      <Cmp
-        {...routeProps}
-        render={props => {
-          if (routeProps.title) document.title = routeProps.title
-          return render(props, component, routers, routeProps.path)
-        }}
-      />
-    )
-  }
-}
-
-function renderRouters(routers, switchProps = {}, rootPath = '') {
-  return routers ? (
-    <CacheSwitch {...switchProps}>
-      {routers.map((router, index) => {
-        return getElement(router, index, rootPath)
-      })}
-    </CacheSwitch>
-  ) : null
+function App() {
+  const navigate = useNavigate()
+  return (
+    <Container className="App">
+      <Header>
+        <Navbar appearance="inverse">
+          <Navbar.Brand onClick={() => navigate('/')}>
+            <span className="title">Learn Cesium</span>
+          </Navbar.Brand>
+        </Navbar>
+      </Header>
+      <Content id="stage">
+        <Suspense fallback={<Loading />}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/viewer">
+              {allCases.map(item => {
+                const { index, path, component } = item
+                const Component = lazy(() => import(`@/cases/${component}`))
+                return <Route index={index} key={component} path={path} element={<Component />} />
+              })}
+            </Route>
+            <Route path="*" element={<ErrorPage />} />
+          </Routes>
+        </Suspense>
+      </Content>
+      <Footer className="footer">Made by Gu-Miao 💖</Footer>
+    </Container>
+  )
 }
 
 export default App
