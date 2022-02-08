@@ -2,16 +2,17 @@ language: node_js
 node_js:
   - lts/*
 install:
-  - npm install
+  - npm install yarn -g
+  - yarn install --frozen-lockfile
 script:
-  - npm run build
+  - yarn build
 os: linux
 deploy:
   skip_cleanup: true
   provider: pages
   cleanup: false
   local_dir: build
-  token: $GITHUB_TOKEN 
+  token: $GITHUB_TOKEN
   keep_history: true
   target-branch: gh-pages
   on:
