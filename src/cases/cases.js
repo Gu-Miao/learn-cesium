@@ -70,6 +70,14 @@ export const cases = {
       component: 'Cesium3DTiles/HeatZone'
     }
   ]
+  // Analysis: [
+  //   {
+  //     path: 'analysis-buffer',
+  //     title: 'Buffer',
+  //     description: 'Buffer area',
+  //     component: 'Analysis/Buffer'
+  //   }
+  // ]
 }
 
 export const allCases = Object.values(cases).flat()
