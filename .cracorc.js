@@ -27,10 +27,7 @@ module.exports = {
     configure(config) {
       config.module.unknownContextCritical = false
       config.module.unknownContextRegExp = /\/cesium\/cesium\/Source\/Core\/buildModuleUrl\.js/
-      config.module.rules.push({
-        test: /\.js$/,
-        use: { loader: require.resolve('@open-wc/webpack-import-meta-loader') }
-      })
+
       const oneOfRules = config.module.rules.find(rule => rule.oneOf)
       oneOfRules.oneOf.unshift({
         test: /\.glsl$/,
