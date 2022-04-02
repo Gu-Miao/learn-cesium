@@ -13,23 +13,23 @@ jobs:
         with:
           node-version: 16
 
-      - name: Cache node modules
+      - name: cache node modules
         uses: actions/cache@v2.1.7
         with:
           path: node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
           restore-keys: ${{ runner.OS }}-build-${{ env.cache-name }}-${{ runner.OS }}-build-${{ runner.OS }}-
 
-      - name: Install yarn
+      - name: install yarn
         run: npm install yarn -g
 
-      - name: Install packages
+      - name: install packages
         run: yarn install --frozen-lockfile
 
-      - name: Build document
-        run: yarn doc
+      - name: build
+        run: yarn build
 
-      - name: GitHub Pages action
+      - name: gitHub Pages action
         uses: peaceiris/actions-gh-pages@v3.7.3
         with:
           deploy_key: ${{ secrets.GH_PAGES_SECRET }}
