@@ -1,14 +1,3 @@
-# dependencies
-/node_modules
+node_modules
+dist
 
-# dist
-/buld
-
-# project files
-.gitignore
-CHANGELOG
-
-# lock files
-package-lock.json
-yarn.lock
-yarn-*
