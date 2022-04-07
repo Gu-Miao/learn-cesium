@@ -1780,7 +1780,7 @@ vfonts@^0.0.3:
 
 vite-plugin-static-copy@^0.4.3:
   version "0.4.3"
-  resolved "https://registry.yarnpkg.com/vite-plugin-static-copy/-/vite-plugin-static-copy-0.4.3.tgz#607699f41ef4a062603e7509b49f50508a70665d"
+  resolved "https://registry.npmmirror.com/vite-plugin-static-copy/-/vite-plugin-static-copy-0.4.3.tgz#607699f41ef4a062603e7509b49f50508a70665d"
   integrity sha512-t90VS6+p3em9eHkMLN3WwLCNQ8MyICGlyAFN3w7Z+/dz9Mea2Cz9AoOg1ZfFmxpNYu5p9t+H47aztpY9e3g4BQ==
   dependencies:
     chokidar "^3.5.3"
