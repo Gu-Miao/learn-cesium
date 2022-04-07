@@ -6,6 +6,7 @@ import { viteStaticCopy as copy } from 'vite-plugin-static-copy'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/learn-cesium/',
   plugins: [
     copy({
       targets: [
