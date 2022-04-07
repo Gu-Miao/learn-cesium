@@ -1,4 +1,4 @@
-import { onMounted, onUnmounted } from 'vue'
+import { onMounted, onBeforeUnmount } from 'vue'
 import { Viewer } from 'cesium'
 import { CESIUM_CONTAINER_ID } from '@/common/constants'
 
@@ -9,21 +9,21 @@ type ViewerRef = { current?: Viewer }
  * @param callback Callback after viewer is mounted.
  */
 function useCesium(callback?: (viewer: Viewer) => void) {
-  const viewer: ViewerRef = { current: undefined }
+  const viewerRef: ViewerRef = { current: undefined }
 
   onMounted(() => {
-    viewer.current = createViewer()
-    callback && callback(viewer.current)
+    viewerRef.current = createViewer()
+    if (callback) {
+      callback(viewerRef.current)
+    }
   })
 
-  onUnmounted(() => {
-    try {
-      viewer.current?.destroy()
-      // eslint-disable-next-line no-empty
-    } catch {}
+  onBeforeUnmount(() => {
+    const viewer = viewerRef.current as Viewer
+    viewer.destroy()
   })
 
-  return viewer
+  return viewerRef
 }
 
 /** Create a viewer. */

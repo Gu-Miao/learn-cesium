@@ -1,5 +1,8 @@
-import useCesium from '@/hooks/useCesium'
-import CesiumContainer from '@/cases/components/CesiumContainer/CesiumContainer'
+<template>
+  <CesiumContainer />
+</template>
+
+<script setup lang="ts">
 import {
   Cartesian3,
   Transforms,
@@ -8,16 +11,17 @@ import {
   PolygonHierarchy,
   Color
 } from 'cesium'
+import useCesium from '@/hooks/useCesium'
+import CesiumContainer from '@/components/CesiumContainer.vue'
 
 /**
  * Get regular polygon positions.
- *
- * @param {Cartesian3} center Position of center.
- * @param {number} radius Radius of polygon.
- * @param {number} sides Number of sides.
+ * @param center Position of center.
+ * @param radius Radius of polygon.
+ * @param sides Number of sides.
  * @returns
  */
-function getRegularPolygonPositions(center, radius, sides) {
+function getRegularPolygonPositions(center: Cartesian3, radius: number, sides: number) {
   const localToWorldMatrix = Transforms.eastNorthUpToFixedFrame(center)
   const worldToLocalMatrix = Matrix4.inverse(localToWorldMatrix, new Matrix4())
 
@@ -39,24 +43,19 @@ function getRegularPolygonPositions(center, radius, sides) {
 
 const center = Cartesian3.fromDegrees(136.038234, 36.88456, 0)
 
-function RegularPolygonEntity() {
-  useCesium(viewer => {
-    for (let i = 3; i <= 8; i++) {
-      const entity = viewer.entities.add({
-        polygon: {
-          hierarchy: new PolygonHierarchy(getRegularPolygonPositions(center, i * 100, i)),
-          fill: false,
-          outline: true,
-          outlineColor: Color.RED
-        }
-      })
-      if (i === 3) {
-        viewer.zoomTo(entity)
+useCesium(viewer => {
+  for (let i = 3; i <= 8; i++) {
+    const entity = viewer.entities.add({
+      polygon: {
+        hierarchy: new PolygonHierarchy(getRegularPolygonPositions(center, i * 100, i)),
+        fill: false,
+        outline: true,
+        outlineColor: Color.RED
       }
+    })
+    if (i === 3) {
+      viewer.zoomTo(entity)
     }
-  })
-
-  return <CesiumContainer />
-}
-
-export default RegularPolygonEntity
+  }
+})
+</script>

@@ -19,21 +19,15 @@ export const caseMap: Record<string, Case[]> = {
       description: 'Orbit Fly',
       component: () => import('./Camera/OrbitFly.vue')
     }
-  ]
-  // Entities: [
-  //   {
-  //     path: '/entities-billboard',
-  //     name: 'Billboard Entity',
-  //     description: 'Add billboard entity to viewer',
-  //     component: 'Entities/Billboard'
-  //   },
-  //   {
-  //     path: '/entities-regular-polygon',
-  //     name: 'Regular Polygon Entity',
-  //     description: 'Calculate regular polygon positions via trigonometric functions',
-  //     component: 'Entities/RegularPolygon'
-  //   }
-  // ],
+  ],
+  Entities: [
+    {
+      path: '/entities-regular-polygon',
+      name: 'Regular Polygon Entity',
+      description: 'Calculate regular polygon positions via trigonometric functions',
+      component: () => import('./Entities/RegularPolygon.vue')
+    }
+  ],
   // CZML: [
   //   {
   //     path: '/czml-viewe-from',
@@ -42,20 +36,26 @@ export const caseMap: Record<string, Case[]> = {
   //     component: 'CZML/ViewFrom'
   //   }
   // ],
-  // Cesium3dTiles: [
-  //   {
-  //     path: '/cesium3dTiles-change-model-shader',
-  //     name: 'Change Model Shader',
-  //     description: 'Change shader of models in 3dtiles through some private API',
-  //     component: 'Cesium3DTiles/ChangeModelShader'
-  //   },
-  //   {
-  //     path: '/cesium3dTiles-heatzone',
-  //     name: 'HeatZone',
-  //     description: 'Add heat zone style to 3dtiles buildings',
-  //     component: 'Cesium3DTiles/HeatZone'
-  //   }
-  // ]
+  Cesium3dTiles: [
+    {
+      path: '/3dtiles-loading',
+      name: '3DTiles Loading',
+      description: 'Show loading status of 3diltes without interrupting user behavior',
+      component: () => import('./Cesium3DTiles/Cesium3DTilesLoading.vue')
+    },
+    {
+      path: '/3dtiles-change-model-shader',
+      name: 'Change Model Shader',
+      description: 'Change shader of models in 3dtiles through some private API',
+      component: () => import('./Cesium3DTiles/ChangeModelShader.vue')
+    },
+    {
+      path: '/3dtiles-heatzone',
+      name: 'HeatZone',
+      description: 'Add heat zone style to 3dtiles buildings',
+      component: () => import('./Cesium3DTiles/HeatZone.vue')
+    }
+  ]
   // Analysis: [
   //   {
   //     path: '/analysis-buffer',

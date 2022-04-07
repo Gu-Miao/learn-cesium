@@ -1,30 +1,38 @@
 <template>
-  <CesiumContainer>
+  <CesiumContainer class="hpr">
     <Toolbar>
-      <NForm :model="formValue" ref="formRef">
-        <NFormItem label="x" path="x">
-          <NInput v-model:value="formValue.x" placeholder="x" />
+      <NForm :model="formValue">
+        <NFormItem label="Offset X" path="x" size="small" label-style="color: #fff;">
+          <NInputNumber
+            v-model:value="formValue.x"
+            placeholder="x"
+            :min="-maxOffset"
+            :max="maxOffset"
+            :step="20"
+          />
         </NFormItem>
-        <NFormItem label="y" path="y">
-          <NInput v-model:value="formValue.y" placeholder="y" />
+        <NFormItem label="Offset Y" path="y" size="small" label-style="color: #fff;">
+          <NInputNumber
+            v-model:value="formValue.y"
+            placeholder="y"
+            :min="-maxOffset"
+            :max="maxOffset"
+            :step="20"
+          />
         </NFormItem>
-        <NFormItem label="z" path="z">
-          <NInput v-model:value="formValue.z" placeholder="z" />
+        <NFormItem label="Offset Z" path="z" size="small" label-style="color: #fff;">
+          <NInputNumber
+            v-model:value="formValue.z"
+            placeholder="z"
+            :min="-maxOffset"
+            :max="maxOffset"
+            :step="20"
+          />
         </NFormItem>
-        <NButton appearance="primary"> Create Point </NButton>
-        <NButton
-          @click="
-            () => {
-              const offset = createRandomOffset()
-              const { x, y, z } = offset
-              createPointAndLook(offset)
-            }
-          "
-        >
-          Create Random Point
-        </NButton>
-        <NButton type="primary" @click="clearAllPoints"> Clear all points </NButton>
-        <NButton @click="resetCamera"> Reset Camera </NButton>
+        <NButton type="info" block @click="createPointByPosition">Create Point</NButton>
+        <NButton type="primary" block @click="createRandomPoint"> Create Random Point </NButton>
+        <NButton type="error" block @click="clearAllPoints"> Clear all points </NButton>
+        <NButton type="info" block @click="resetCamera"> Reset Camera </NButton>
       </NForm>
     </Toolbar>
   </CesiumContainer>
@@ -34,56 +42,52 @@
 import useCesium from '@/hooks/useCesium'
 import CesiumContainer from '@/components/CesiumContainer.vue'
 import Toolbar from '@/components/Toolbar.vue'
-import { NForm, NFormItem, NInput, NButton } from 'naive-ui'
+import { NForm, NFormItem, NInputNumber, NButton } from 'naive-ui'
 import { Cartesian3, Color, Transforms, Matrix4, Math as CesiumMath } from 'cesium'
 import viewerCesiumNavigationMixin from 'cesium-navigation-es6'
 import { getHeadingPitchRoll } from '@/utils/cesium'
 import { ref } from 'vue'
-import type { FormInst } from 'naive-ui'
 
-const formRef = ref<FormInst | null>(null)
-
-/** Create random integer between 0~1000 */
+/** Create random integer between -maxOffset~maxOffset. */
 function createRandomInteger() {
-  return Math.floor((Math.random() - 0.5) * 1000)
+  return parseFloat(((Math.random() - 0.5) * maxOffset * 2).toFixed(2))
 }
 
-/** Create random cartesian3 */
+/** Create random cartesian3. */
 function createRandomOffset() {
   return new Cartesian3(createRandomInteger(), createRandomInteger(), createRandomInteger())
 }
 
-// function InputItem({ name }) {
-//   return (
-//     <Col xs={8}>
-//       <Form.Group>
-//         <Form.ControlLabel>{name.toUpperCase()}:</Form.ControlLabel>
-//         <Form.Control
-//           style={{ width: '100%' }}
-//           name={name}
-//           accepter={InputNumber}
-//           size="sm"
-//           min={-500}
-//           max={500}
-//         />
-//       </Form.Group>
-//     </Col>
-//   )
-// }
-
-const formDefaultValue = { x: '0', y: '0', z: '0' }
 const position = Cartesian3.fromDegrees(136.66, 35.8934, 1500)
 const localToWorldMatrix = Transforms.eastNorthUpToFixedFrame(position)
 const worldToLocalMatrix = Matrix4.inverse(localToWorldMatrix, new Matrix4())
 const localPosition = Matrix4.multiplyByPoint(worldToLocalMatrix, position, new Cartesian3())
+const maxOffset = 1000
 
-const formValue = ref(formDefaultValue)
+const formValue = ref({ x: 0, y: 0, z: 0 })
 const viewerRef = useCesium(viewer => {
   new viewerCesiumNavigationMixin(viewer, {})
   resetCamera()
 })
 
-// Reset view of camera.
+/** Create point by position. */
+function createPointByPosition() {
+  const { x, y, z } = formValue.value
+  const position = new Cartesian3(x, y, z)
+  createPointAndLook(position)
+}
+
+/** Create point by random position. */
+function createRandomPoint() {
+  const offset = createRandomOffset()
+  createPointAndLook(offset)
+  const { x, y, z } = offset
+  formValue.value.x = x
+  formValue.value.y = y
+  formValue.value.z = z
+}
+
+/** Reset view of camera. */
 function resetCamera() {
   const viewer = viewerRef.current
   if (!viewer) return
@@ -111,9 +115,9 @@ function createPoint(position: Cartesian3) {
     ellipsoid: {
       radii: new Cartesian3(5, 5, 5),
       material: Color.fromBytes(
-        Math.abs(position.x),
-        Math.abs(position.y),
-        Math.abs(position.z),
+        Math.abs(position.x % 255),
+        Math.abs(position.y % 255),
+        Math.abs(position.z % 255),
         255
       )
     }
@@ -122,7 +126,7 @@ function createPoint(position: Cartesian3) {
 
 /**
  * Create a point and look at it.
- * @param  offset Relative offset cartesian3.
+ * @param offset Relative offset cartesian3.
  */
 function createPointAndLook(offset: Cartesian3) {
   const viewer = viewerRef.current
@@ -149,9 +153,7 @@ function createPointAndLook(offset: Cartesian3) {
   })
 }
 
-/**
- * Remove all point entities.
- */
+/** Remove all point entities. */
 function clearAllPoints() {
   const viewer = viewerRef.current
   if (!viewer) return
@@ -161,7 +163,15 @@ function clearAllPoints() {
 </script>
 
 <style lang="less">
-.n-form-item .n-form-item-label {
-  color: #fff !important;
+.hpr {
+  .n-form-item-feedback-wrapper {
+    min-height: 6px;
+  }
+  button {
+    margin-bottom: 5px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 }
 </style>
