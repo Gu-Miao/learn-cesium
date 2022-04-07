@@ -4,7 +4,7 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 import router from './router'
 
-window.CESIUM_BASE_URL = '/'
+window.CESIUM_BASE_URL = import.meta.env.BASE_URL
 
 const app = createApp(App)
 

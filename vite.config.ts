@@ -4,9 +4,11 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { viteStaticCopy as copy } from 'vite-plugin-static-copy'
 
+const base = '/learn-cesium/'
+
 // https://vitejs.dev/config/
-export default defineConfig({
-  base: '/learn-cesium/',
+export default defineConfig(({ mode }) => ({
+  base,
   plugins: [
     copy({
       targets: [
@@ -17,7 +19,7 @@ export default defineConfig({
             'node_modules/cesium/Build/Cesium/Widgets',
             'node_modules/cesium/Build/Cesium/Workers'
           ],
-          dest: '/'
+          dest: mode === 'production' ? '/' : base
         }
       ]
     }),
@@ -34,4 +36,4 @@ export default defineConfig({
       external: '/Widgets/widgets.css'
     }
   }
-})
+}))
