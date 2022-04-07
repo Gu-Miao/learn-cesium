@@ -34,7 +34,7 @@ jobs:
         with:
           deploy_key: ${{ secrets.GH_PAGES_SECRET }}
           publish_branch: gh-pages
-          publish_dir: build
+          publish_dir: dist
           destination_dir: .
           keep_files: false
           force_orphan: false
