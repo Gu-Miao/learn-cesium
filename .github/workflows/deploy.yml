@@ -38,4 +38,8 @@ jobs:
           destination_dir: .
           keep_files: false
           force_orphan: false
-          enable_jekyll: false
+          disable_nojekyll: true
+
+
+
+
