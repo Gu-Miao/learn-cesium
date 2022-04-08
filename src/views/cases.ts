@@ -28,14 +28,14 @@ export const caseMap: Record<string, Case[]> = {
       component: () => import('./Entities/RegularPolygon.vue')
     }
   ],
-  // CZML: [
-  //   {
-  //     path: '/czml-viewe-from',
-  //     name: 'ViewFrom',
-  //     description: 'Calculate viewFrom property for czml',
-  //     component: 'CZML/ViewFrom'
-  //   }
-  // ],
+  CZML: [
+    {
+      path: '/czml-loop-animation',
+      name: 'Loop Animation',
+      description: 'Loop Animation',
+      component: () => import('./CZML/LoopAnimation.vue')
+    }
+  ],
   Cesium3dTiles: [
     {
       path: '/3dtiles-loading',
