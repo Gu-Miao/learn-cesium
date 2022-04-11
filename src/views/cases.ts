@@ -28,6 +28,14 @@ export const caseMap: Record<string, Case[]> = {
       component: () => import('./Entities/RegularPolygon.vue')
     }
   ],
+  Globe: [
+    {
+      path: '/globe-clipping-planes',
+      name: 'Clipping Planes',
+      description: 'Terrain data clipping by position points',
+      component: () => import('./Globe/ClippingPlanes.vue')
+    }
+  ],
   CZML: [
     {
       path: '/czml-loop-animation',
