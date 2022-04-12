@@ -1,0 +1,1 @@
+import{K as r,L as t,N as a,d as c,O as u,m as i,Q as m}from"./CesiumContainer.9cd1fe01.js";function n(e){e=r(e,{url:t.fromAssetId(96188)});const s=new a(e);let l=e.style;if(!c(l)){const o=u(e.defaultColor,i.WHITE).toCssColorString();l=new m({color:`Boolean(\${feature['cesium#color']}) ? color(\${feature['cesium#color']}) : ${o}`})}return s.style=l,s}export{n as c};
