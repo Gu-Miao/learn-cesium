@@ -26,6 +26,12 @@ export const caseMap: Record<string, Case[]> = {
       name: 'Regular Polygon Entity',
       description: 'Calculate regular polygon positions via trigonometric functions',
       component: () => import('./Entities/RegularPolygon.vue')
+    },
+    {
+      path: '/entities-entities-to-primitive',
+      name: 'Entities To Primitive',
+      description: 'Convert entities to primitive',
+      component: () => import('./Entities/EntitiesToPrimitive.vue')
     }
   ],
   Globe: [

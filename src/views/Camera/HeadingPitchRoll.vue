@@ -45,18 +45,8 @@ import Toolbar from '@/components/Toolbar.vue'
 import { NForm, NFormItem, NInputNumber, NButton } from 'naive-ui'
 import { Cartesian3, Color, Transforms, Matrix4, Math as CesiumMath } from 'cesium'
 import viewerCesiumNavigationMixin from 'cesium-navigation-es6'
-import { getHeadingPitchRoll } from '@/utils/cesium'
+import { getHeadingPitchRoll, getFixedNumber, createRandomNumber } from '@/utils'
 import { ref } from 'vue'
-
-/** Create random integer between -maxOffset~maxOffset. */
-function createRandomInteger() {
-  return parseFloat(((Math.random() - 0.5) * maxOffset * 2).toFixed(2))
-}
-
-/** Create random cartesian3. */
-function createRandomOffset() {
-  return new Cartesian3(createRandomInteger(), createRandomInteger(), createRandomInteger())
-}
 
 const position = Cartesian3.fromDegrees(136.66, 35.8934, 1500)
 const localToWorldMatrix = Transforms.eastNorthUpToFixedFrame(position)
@@ -69,6 +59,16 @@ const viewerRef = useCesium(viewer => {
   new viewerCesiumNavigationMixin(viewer, {})
   resetCamera()
 })
+
+/** Create random float */
+function createRandomFloat() {
+  return getFixedNumber(createRandomNumber(-maxOffset, maxOffset), 2)
+}
+
+/** Create random cartesian3. */
+function createRandomOffset() {
+  return new Cartesian3(createRandomFloat(), createRandomFloat(), createRandomFloat())
+}
 
 /** Create point by position. */
 function createPointByPosition() {

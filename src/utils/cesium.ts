@@ -1,4 +1,4 @@
-import { Cartographic, Cartesian3 } from 'cesium'
+import { Cartographic, Cartesian3, Transforms, Matrix4, Math as CesiumMath } from 'cesium'
 
 /**
  * Add height of a Cartesian3 instance.
@@ -114,4 +114,31 @@ export function getPitchDegree(p1: Cartesian3, p2: Cartesian3) {
   // Pitch's plus or minus is according to z2-z1, if z2-z1>0, positive
   // otherwise negative.
   return zDiff > 0 ? theta : -theta
+}
+
+/**
+ * Get regular polygon positions.
+ * @param center Position of center.
+ * @param radius Radius of polygon.
+ * @param sides Number of sides.
+ * @returns
+ */
+export function getRegularPolygonPositions(center: Cartesian3, radius: number, sides: number) {
+  const localToWorldMatrix = Transforms.eastNorthUpToFixedFrame(center)
+  const worldToLocalMatrix = Matrix4.inverse(localToWorldMatrix, new Matrix4())
+
+  const localCenter = Matrix4.multiplyByPoint(worldToLocalMatrix, center, new Cartesian3())
+
+  const split = 360 / sides
+  const positions = []
+
+  for (let i = 0; i <= sides; i++) {
+    const radian = CesiumMath.toRadians(split * i)
+    const pointPosition = localCenter.clone()
+    pointPosition.x += Math.cos(radian) * radius
+    pointPosition.y += Math.sin(radian) * radius
+    positions.push(Matrix4.multiplyByPoint(localToWorldMatrix, pointPosition, new Cartesian3()))
+  }
+
+  return positions
 }
