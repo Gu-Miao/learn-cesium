@@ -15,3 +15,11 @@ export function createRandomNumber(min: number, max: number) {
 export function getFixedNumber(num: number, fractionDigits?: number) {
   return parseFloat(num.toFixed(fractionDigits))
 }
+
+/**
+ * Get speed meters per second
+ * @param KiloMetersPerHour Speed, kilometers per hour.
+ */
+export function getMetersPerSecond(KiloMetersPerHour: number) {
+  return KiloMetersPerHour / 3.6
+}

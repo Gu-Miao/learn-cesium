@@ -48,6 +48,12 @@ export const caseMap: Record<string, Case[]> = {
       name: 'Loop Animation',
       description: 'Loop Animation',
       component: () => import('./CZML/LoopAnimation.vue')
+    },
+    {
+      path: '/czml-send-milk',
+      name: 'Send Milk',
+      description: 'An animation of sending milk',
+      component: () => import('./CZML/SendMilk.vue')
     }
   ],
   Cesium3dTiles: [

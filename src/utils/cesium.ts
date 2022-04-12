@@ -142,3 +142,37 @@ export function getRegularPolygonPositions(center: Cartesian3, radius: number, s
 
   return positions
 }
+
+/**
+ * 计算 viewFrom
+ * @param p1 本地坐标系坐标1
+ * @param p2 本地坐标系坐标2
+ * @param heading 偏转角
+ * @param pitch 俯仰角
+ * @param backward 后退距离
+ * @returns viewFrom
+ */
+export function getViewFrom(
+  p1: Cartesian3,
+  p2: Cartesian3,
+  heading = getHeadingDegree(p1, p2),
+  pitch = -45,
+  backward = 1000
+): [number, number, number] {
+  if (pitch === -90) {
+    return [0, 0, backward]
+  }
+
+  const mx = heading > 0 ? -1 : 1
+  const my = Math.abs(heading) < 90 ? -1 : 1
+  const alpha = Math.abs(heading) <= 90 ? Math.abs(heading) : 180 - Math.abs(heading)
+  const alphaRadian = CesiumMath.toRadians(alpha)
+  const theta = 90 + pitch
+  const thetaRadian = CesiumMath.toRadians(theta)
+
+  const deltaX = backward * Math.sin(alphaRadian) * mx
+  const deltaY = backward * Math.cos(alphaRadian) * my
+  const deltaZ = backward / Math.tan(thetaRadian)
+
+  return [deltaX, deltaY, deltaZ]
+}
