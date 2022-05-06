@@ -62,6 +62,11 @@ ul {
   list-style: none;
   padding-inline-start: 0;
 }
+
+body #nprogress .bar {
+  background: #5f27cd;
+  height: 4px;
+}
 </style>
 
 <style scoped lang="less">

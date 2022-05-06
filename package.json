@@ -12,9 +12,10 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "cesium": "^1.92.0",
+    "cesium": "^1.93.0",
     "cesium-navigation-es6": "^3.0.7",
     "naive-ui": "^2.27.0",
+    "nprogress": "^0.2.0",
     "pinia": "^2.0.13",
     "vue": "^3.2.31",
     "vue-router": "^4.0.14"
@@ -22,6 +23,7 @@
   "devDependencies": {
     "@rushstack/eslint-patch": "^1.1.0",
     "@types/node": "^16.11.26",
+    "@types/nprogress": "^0.2.0",
     "@vitejs/plugin-vue": "^2.3.1",
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-typescript": "^10.0.0",

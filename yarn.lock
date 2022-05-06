@@ -112,6 +112,11 @@
   resolved "https://registry.npmmirror.com/@types/node/-/node-17.0.23.tgz#3b41a6e643589ac6442bdbd7a4a3ded62f33f7da"
   integrity sha512-UxDxWn7dl97rKVeVS61vErvw086aCYhDLyvRQZ5Rk65rZKepaFdm53GeqXaKBuOhED4e9uWq34IC3TdSdJJ2Gw==
 
+"@types/nprogress@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.npmmirror.com/@types/nprogress/-/nprogress-0.2.0.tgz#86c593682d4199212a0509cc3c4d562bbbd6e45f"
+  integrity sha512-1cYJrqq9GezNFPsWTZpFut/d4CjpZqA0vhqDUPFWYKF1oIyBz5qnoYMzR+0C/T96t3ebLAC1SSnwrVOm5/j74A==
+
 "@typescript-eslint/eslint-plugin@^5.0.0":
   version "5.18.0"
   resolved "https://registry.npmmirror.com/@typescript-eslint/eslint-plugin/-/eslint-plugin-5.18.0.tgz#950df411cec65f90d75d6320a03b2c98f6c3af7d"
@@ -490,10 +495,15 @@ cesium-navigation-es6@^3.0.7:
   dependencies:
     cesium "^1.88"
 
-cesium@^1.88, cesium@^1.92.0:
+cesium@^1.88:
   version "1.92.0"
   resolved "https://registry.npmmirror.com/cesium/-/cesium-1.92.0.tgz#d4a736be7f3516830a814c4c99780a385c12a258"
   integrity sha512-qU2EIV3M+ru6uF5UQUjUWXeq9UVieMBeq+Q8fzzNbFgeSbLrvnJ7jSJq0vvgaVDPe0PnmN72FZKMDiJdTFpMnQ==
+
+cesium@^1.93.0:
+  version "1.93.0"
+  resolved "https://registry.npmmirror.com/cesium/-/cesium-1.93.0.tgz#4e98e7770b993a87e53bffa95ac5cbb89137d390"
+  integrity sha512-y5+KkISn3+0MZxGj96mNaZc5LAfpiOs1fmZCInH2xHwYw43FaaRbvdSHXZs8OwJ5dZIlo/m1biMyOKr354L+UA==
 
 chalk@^4.0.0:
   version "4.1.2"
@@ -1387,6 +1397,11 @@ normalize-path@^3.0.0, normalize-path@~3.0.0:
   version "3.0.0"
   resolved "https://registry.npmmirror.com/normalize-path/-/normalize-path-3.0.0.tgz#0dcd69ff23a1c9b11fd0978316644a0388216a65"
   integrity sha512-6eZs5Ls3WtCisHWp9S2GUy8dqkpGi4BVSz3GaqiE6ezub0512ESztXUwUB6C6IKbQkY2Pnb/mD4WYojCRwcwLA==
+
+nprogress@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.npmmirror.com/nprogress/-/nprogress-0.2.0.tgz#cb8f34c53213d895723fcbab907e9422adbcafb1"
+  integrity sha512-I19aIingLgR1fmhftnbWWO3dXc0hSxqHQHQb3H8m+K3TnEn/iSeTZZOyvKXWqQESMwuUVnatlCnZdLBZZt2VSA==
 
 object-assign@^4.1.1:
   version "4.1.1"
