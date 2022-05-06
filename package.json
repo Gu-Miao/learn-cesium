@@ -14,6 +14,7 @@
   "dependencies": {
     "cesium": "^1.93.0",
     "cesium-navigation-es6": "^3.0.7",
+    "cesium-toolkit": "^0.3.1",
     "naive-ui": "^2.27.0",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.13",

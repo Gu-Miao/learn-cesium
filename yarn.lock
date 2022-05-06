@@ -495,6 +495,11 @@ cesium-navigation-es6@^3.0.7:
   dependencies:
     cesium "^1.88"
 
+cesium-toolkit@^0.3.1:
+  version "0.3.1"
+  resolved "https://registry.npmmirror.com/cesium-toolkit/-/cesium-toolkit-0.3.1.tgz#5dd8292ad198a2391b828b498a8105cce6b2ca27"
+  integrity sha512-Wxa9dq/YO0NJrLk2PI/LwvKOZtwy8dZeCTHgK6RaHsDU5HjK1WqBpXGYcLxjvMkfzmRlB4KytR8gRJbOAj3p2A==
+
 cesium@^1.88:
   version "1.92.0"
   resolved "https://registry.npmmirror.com/cesium/-/cesium-1.92.0.tgz#d4a736be7f3516830a814c4c99780a385c12a258"
