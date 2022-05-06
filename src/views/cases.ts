@@ -75,6 +75,14 @@ export const caseMap: Record<string, Case[]> = {
       description: 'Add heat zone style to 3dtiles buildings',
       component: () => import('./Cesium3DTiles/HeatZone.vue')
     }
+  ],
+  Primitives: [
+    {
+      path: '/primitives-label-along-the-line',
+      name: 'Label Along The Line',
+      description: 'Add labels that along the polyline',
+      component: () => import('./Primitives/LabelAlongTheLine.vue')
+    }
   ]
   // Analysis: [
   //   {
