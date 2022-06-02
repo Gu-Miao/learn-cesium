@@ -55,7 +55,7 @@ useCesium(viewer => {
   })
 
   const handler = new ScreenSpaceEventHandler(viewer.canvas)
-  handler.setInputAction(movement => {
+  handler.setInputAction((movement: ScreenSpaceEventHandler.PositionedEvent) => {
     viewer.selectedEntity = undefined
     const pickedBuilding = viewer.scene.pick(movement.position)
     if (pickedBuilding) {
