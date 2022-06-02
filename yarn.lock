@@ -505,10 +505,10 @@ cesium@^1.88:
   resolved "https://registry.npmmirror.com/cesium/-/cesium-1.92.0.tgz#d4a736be7f3516830a814c4c99780a385c12a258"
   integrity sha512-qU2EIV3M+ru6uF5UQUjUWXeq9UVieMBeq+Q8fzzNbFgeSbLrvnJ7jSJq0vvgaVDPe0PnmN72FZKMDiJdTFpMnQ==
 
-cesium@^1.93.0:
-  version "1.93.0"
-  resolved "https://registry.npmmirror.com/cesium/-/cesium-1.93.0.tgz#4e98e7770b993a87e53bffa95ac5cbb89137d390"
-  integrity sha512-y5+KkISn3+0MZxGj96mNaZc5LAfpiOs1fmZCInH2xHwYw43FaaRbvdSHXZs8OwJ5dZIlo/m1biMyOKr354L+UA==
+cesium@^1.94.0:
+  version "1.94.0"
+  resolved "https://registry.npmmirror.com/cesium/-/cesium-1.94.0.tgz#286ac5c92db46227b510f1626518fee1597e32c5"
+  integrity sha512-BeZ44Xg/RpojzeWt+UwzIm1fu0Yxrjc92EpEMc3lhSqYfuxCcCK5Ao/rAap+wgNxnhEeLCObVyIqPjqpT1qj3w==
 
 chalk@^4.0.0:
   version "4.1.2"

@@ -12,7 +12,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "cesium": "^1.93.0",
+    "cesium": "^1.94.0",
     "cesium-navigation-es6": "^3.0.7",
     "cesium-toolkit": "^0.3.1",
     "naive-ui": "^2.27.0",
