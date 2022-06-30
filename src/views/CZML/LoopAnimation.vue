@@ -118,10 +118,10 @@ useCesium(async viewer => {
     let visualizers
     let vLength
     //@ts-ignore
-    let dataSources = this._dataSourceCollection
-    let length = dataSources.length
+    const dataSources = this._dataSourceCollection
+    const length = dataSources.length
     for (i = 0; i < length; i++) {
-      let dataSource = dataSources.get(i) as DataSources
+      const dataSource = dataSources.get(i) as DataSources
       if (defined(dataSource.update)) {
         result = dataSource.update(time) && result
       }
