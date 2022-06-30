@@ -3,6 +3,7 @@
   "description": "Learn cesium and show some examples.",
   "author": "Gu-Miao",
   "license": "MIT",
+  "packageManager": "yarn@3.2.1",
   "scripts": {
     "prepare": "husky install",
     "start": "vite",
