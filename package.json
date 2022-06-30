@@ -13,31 +13,31 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "cesium": "^1.94.0",
-    "cesium-navigation-es6": "^3.0.7",
-    "cesium-toolkit": "^0.3.1",
-    "naive-ui": "^2.27.0",
+    "cesium": "^1.94.3",
+    "cesium-navigation-es6": "^3.0.8",
+    "cesium-toolkit": "^0.4.0",
+    "naive-ui": "^2.30.8",
     "nprogress": "^0.2.0",
-    "pinia": "^2.0.13",
-    "vue": "^3.2.31",
-    "vue-router": "^4.0.14"
+    "pinia": "^2.0.14",
+    "vue": "^3.2.37",
+    "vue-router": "^4.0.16"
   },
   "devDependencies": {
-    "@rushstack/eslint-patch": "^1.1.0",
-    "@types/node": "^16.11.26",
+    "@rushstack/eslint-patch": "^1.1.4",
+    "@types/node": "^16.11.42",
     "@types/nprogress": "^0.2.0",
-    "@vitejs/plugin-vue": "^2.3.1",
+    "@vitejs/plugin-vue": "^2.3.3",
     "@vue/eslint-config-prettier": "^7.0.0",
-    "@vue/eslint-config-typescript": "^10.0.0",
+    "@vue/eslint-config-typescript": "^11.0.0",
     "@vue/tsconfig": "^0.1.3",
-    "eslint": "^8.5.0",
-    "eslint-plugin-vue": "^8.2.0",
-    "husky": "^7.0.4",
-    "less": "^4.1.2",
-    "prettier": "^2.5.1",
-    "typescript": "~4.6.3",
-    "vite": "^2.9.1",
-    "vite-plugin-static-copy": "^0.4.3",
-    "vue-tsc": "^0.33.9"
+    "eslint": "^8.18.0",
+    "eslint-plugin-vue": "^9.1.1",
+    "husky": "^8.0.1",
+    "less": "^4.1.3",
+    "prettier": "^2.7.1",
+    "typescript": "~4.7.4",
+    "vite": "^2.9.13",
+    "vite-plugin-static-copy": "^0.6.0",
+    "vue-tsc": "^0.38.2"
   }
 }

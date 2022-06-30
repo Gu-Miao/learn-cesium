@@ -7,7 +7,7 @@ import { viteStaticCopy as copy } from 'vite-plugin-static-copy'
 const base = '/learn-cesium/'
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({
+export default defineConfig(() => ({
   base,
   plugins: [
     copy({
@@ -19,7 +19,7 @@ export default defineConfig(({ mode }) => ({
             'node_modules/cesium/Build/Cesium/Widgets',
             'node_modules/cesium/Build/Cesium/Workers'
           ],
-          dest: mode === 'production' ? '/' : base
+          dest: ''
         }
       ]
     }),
