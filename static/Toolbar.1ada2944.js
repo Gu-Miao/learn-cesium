@@ -1,0 +1,1 @@
+import{_ as o,o as _,c as r,a1 as a}from"./index.7c33d569.js";const t={},s={class:"toolbar"};function c(e,n){return _(),r("div",s,[a(e.$slots,"default",{},void 0,!0)])}var l=o(t,[["render",c],["__scopeId","data-v-8f4d1b6c"]]);export{l as T};
