@@ -4,11 +4,8 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import { viteStaticCopy as copy } from 'vite-plugin-static-copy'
 
-const base = '/learn-cesium/'
-
 // https://vitejs.dev/config/
 export default defineConfig(() => ({
-  base,
   plugins: [
     copy({
       targets: [
