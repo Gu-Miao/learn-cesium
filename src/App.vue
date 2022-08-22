@@ -10,20 +10,12 @@
       <NLayoutContent class="content">
         <RouterView />
       </NLayoutContent>
-      <NLayoutFooter class="footer">Made by Gu-Miao 💖</NLayoutFooter>
     </NLayout>
   </NConfigProvider>
 </template>
 
 <script setup lang="ts">
-import {
-  NConfigProvider,
-  NGlobalStyle,
-  NLayout,
-  NLayoutHeader,
-  NLayoutContent,
-  NLayoutFooter
-} from 'naive-ui'
+import { NConfigProvider, NGlobalStyle, NLayout, NLayoutHeader, NLayoutContent } from 'naive-ui'
 import { RouterLink, RouterView } from 'vue-router'
 </script>
 
@@ -87,13 +79,6 @@ body #nprogress .bar {
   }
 }
 .content {
-  height: ~'calc(100vh - @{height} * 2)';
-}
-.footer {
-  height: @height;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #eee;
+  height: ~'calc(100vh - @{height})';
 }
 </style>

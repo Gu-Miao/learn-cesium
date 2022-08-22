@@ -1,22 +1,18 @@
 <template>
-  <div class="Home">
-    <h2>Cesium Cases</h2>
-
-    <ul>
-      <li v-for="(cases, category) in caseMap" :key="category" class="category">
-        <h4>{{ category }}</h4>
-        <NSpace>
-          <CaseItem
-            v-for="c in cases"
-            :key="c.name"
-            :path="c.path"
-            :title="c.name"
-            :description="c.description"
-          />
-        </NSpace>
-      </li>
-    </ul>
-  </div>
+  <ul class="Home">
+    <li v-for="(cases, category) in caseMap" :key="category" class="category">
+      <h4>{{ category }}</h4>
+      <NSpace>
+        <CaseItem
+          v-for="c in cases"
+          :key="c.name"
+          :path="c.path"
+          :title="c.name"
+          :description="c.description"
+        />
+      </NSpace>
+    </li>
+  </ul>
 </template>
 
 <script setup lang="ts">
@@ -30,16 +26,8 @@ import { caseMap } from './cases'
   height: 100%;
   box-sizing: border-box;
   padding: 20px;
-  display: flex;
-  flex-direction: column;
-}
-h2 {
-  height: 50px;
-  margin-bottom: 30px;
-}
-ul {
+  margin: 0;
   flex: 1 0;
-  max-height: calc(100% - 120px);
   overflow-y: auto;
 }
 .category {
