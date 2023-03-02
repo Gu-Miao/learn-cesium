@@ -1,6 +1,9 @@
 import { onMounted, onBeforeUnmount } from 'vue'
-import { Viewer } from 'cesium'
+import { Viewer, Ion } from 'cesium'
 import { CESIUM_CONTAINER_ID } from '@/common/constants'
+
+Ion.defaultAccessToken =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiJiODY1YTUwZC03ODgxLTQ2ODgtOTdlYy01YTk0MzZhYzliNTgiLCJpZCI6MTAyOTY4LCJpYXQiOjE2NTkwNzc5MDZ9.YypWWZvSdxCnNEVSygS-GPWAGpx5wNYsgz7V3SPOLWs'
 
 type ViewerRef = { current?: Viewer }
 
